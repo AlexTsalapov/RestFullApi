@@ -10,9 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
-
 import java.time.LocalDateTime;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -100,7 +98,7 @@ public class MyControllerTest {
                 .extract().response();
 
         // Получаем значение поля "id" из JSON-ответа
-        Integer id = response.path("id");
+        Integer id = response.path("id");; // Ожидаем статус 200 OK
 
         // Обновляем задачу
         todo.setId(Long.valueOf(id));
