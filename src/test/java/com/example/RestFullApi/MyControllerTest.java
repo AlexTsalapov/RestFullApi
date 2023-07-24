@@ -100,7 +100,7 @@ public class MyControllerTest {
                 .extract().response();
 
         // Получаем значение поля "id" из JSON-ответа
-        Integer id = response.path("id");; // Ожидаем статус 200 OK
+        Integer id = response.path("id");
 
         // Обновляем задачу
         todo.setId(Long.valueOf(id));
