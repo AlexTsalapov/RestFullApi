@@ -10,7 +10,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
+
 import java.time.LocalDateTime;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -47,6 +49,7 @@ public class MyControllerTest {
         // Получаем JWT токен из ответа
         authToken = response.getToken();
     }
+
     @Test
     public void testGetAllTodos() {
         given()
@@ -57,6 +60,7 @@ public class MyControllerTest {
                 .then()
                 .statusCode(200); // Ожидаем статус 200 OK
     }
+
     @Test
     public void testCreateTodo() {
         ToDoDTO todo = new ToDoDTO();
@@ -77,6 +81,7 @@ public class MyControllerTest {
                 .body("description", equalTo("Описание задачи"));
 
     }
+
     @Test
     public void testUpdateTodo() {
         ToDoDTO todo = new ToDoDTO();
@@ -86,7 +91,7 @@ public class MyControllerTest {
         todo.setDescription("Test Description");
 
         // Создаем задачу
-         Response response=given()
+        Response response = given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + authToken) // Добавляем JWT токен в заголовок "Authorization"
                 .contentType(ContentType.JSON)
@@ -98,7 +103,8 @@ public class MyControllerTest {
                 .extract().response();
 
         // Получаем значение поля "id" из JSON-ответа
-        Integer id = response.path("id");; // Ожидаем статус 200 OK
+        Integer id = response.path("id");
+        ; // Ожидаем статус 200 OK
 
         // Обновляем задачу
         todo.setId(Long.valueOf(id));
@@ -119,6 +125,7 @@ public class MyControllerTest {
                 .body("description", equalTo("Updated Description"));
 
     }
+
     @Test
     public void testDeleteTodo() {
         ToDoDTO todo = new ToDoDTO();
@@ -128,7 +135,7 @@ public class MyControllerTest {
         todo.setDescription("Test Description");
 
         // Создаем задачу
-        Response response=given()
+        Response response = given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + authToken) // Добавляем JWT токен в заголовок "Authorization"
                 .contentType(ContentType.JSON)
@@ -140,7 +147,8 @@ public class MyControllerTest {
                 .extract().response();
 
         // Получаем значение поля "id" из JSON-ответа
-        Integer id = response.path("id");; // Ожидаем статус 200 OK
+        Integer id = response.path("id");
+        ; // Ожидаем статус 200 OK
         // Удаляем задачу
         given()
                 .contentType(ContentType.JSON)
@@ -159,6 +167,7 @@ public class MyControllerTest {
                 .then()
                 .statusCode(404); // Ожидаем статус 404 Not Found
     }
+
     @Test
     public void testRegistration() {
         AuthRequest request = new AuthRequest();
