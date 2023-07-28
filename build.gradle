@@ -32,8 +32,8 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'io.rest-assured:rest-assured:4.4.0' // Замените на актуальную версию
-	testImplementation 'io.rest-assured:spring-mock-mvc:4.4.0' // Замените на актуальную версию
+	testImplementation 'io.rest-assured:rest-assured:4.4.0' 
+	testImplementation 'io.rest-assured:spring-mock-mvc:4.4.0'
 	testImplementation 'org.hamcrest:hamcrest:2.2'
 
 }
